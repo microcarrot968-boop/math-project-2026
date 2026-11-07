@@ -7,9 +7,17 @@ def handler(conn):
     msg = conn.recv(1024)
     logging.info("[*] Received: {}".format(msg.decode("ascii")))
 
-    message = "World"
+    message = "I am Bob. Who are you?"
     conn.send(message.encode())
     logging.info("[*] Sent: {}".format(message))
+
+    msg = conn.recv(1024)
+    logging.info("[*] Received: {}".format(msg.decode("ascii")))
+
+    message = "Nice to meet you Alice"
+    conn.send(message.encode())
+    logging.info("[*] Sent: {}".format(message))
+
     conn.close()
 
 def run(addr, port):

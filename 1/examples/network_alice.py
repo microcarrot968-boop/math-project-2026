@@ -7,7 +7,14 @@ def run(addr, port):
     conn.connect((addr, port))
     logging.info("Alice is connected to {}:{}".format(addr, port))
 
-    message = "Hello"
+    message = "Hi"
+    conn.send(message.encode("ascii"))
+    logging.info("[*] Sent: {}".format(message))
+
+    msg = conn.recv(1024)
+    logging.info("[*] Received: {}".format(msg.decode("ascii")))
+
+    message = "Hi Iam Alice"
     conn.send(message.encode("ascii"))
     logging.info("[*] Sent: {}".format(message))
 
