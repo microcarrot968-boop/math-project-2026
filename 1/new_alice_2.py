@@ -1,4 +1,5 @@
 import argparse
+import time
 import logging
 import secrets
 import socket
@@ -28,6 +29,7 @@ def run(addr, port, message):
         encrypted_key = encrypt_aes_key(key, n, e)
         key_message = {'opcode': 2, 'type': 'RSA', 'encrypted_key': encrypted_key}
         channel.send(key_message)
+        time.sleep(0.5)
         logging.info('Sent RSA-encrypted AES key (32 integers)')
 
         encrypted_message = {'opcode': 2, 'type': 'AES', 'encryption': aes_encrypt(key, message)}
